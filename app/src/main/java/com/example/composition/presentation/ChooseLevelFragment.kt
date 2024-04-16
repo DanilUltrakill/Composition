@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.composition.R
 import com.example.composition.databinding.FragmentChooseLevelBinding
-import com.example.composition.databinding.FragmentWelcomeBinding
 import com.example.composition.domain.entity.Level
 
-class ChooseLevelFragment: Fragment() {
+class ChooseLevelFragment : Fragment() {
 
     private var _binding: FragmentChooseLevelBinding? = null
     private val binding: FragmentChooseLevelBinding

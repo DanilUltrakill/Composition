@@ -11,7 +11,7 @@ import com.example.composition.R
 import com.example.composition.databinding.FragmentGameFinishedBinding
 import com.example.composition.domain.entity.GameResult
 
-class GameFinishedFragment: Fragment() {
+class GameFinishedFragment : Fragment() {
 
     private lateinit var gameResult: GameResult
 
@@ -36,11 +36,13 @@ class GameFinishedFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().onBackPressedDispatcher.addCallback( viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                retryGame()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    retryGame()
+                }
+            })
 
         binding.buttonRetry.setOnClickListener {
             retryGame()
@@ -71,7 +73,8 @@ class GameFinishedFragment: Fragment() {
 
         binding.tvRequiredPercentage.text = String.format(
             getString(R.string.required_percentage),
-            gameResult.gameSettings.minPercentOfRightAnswers)
+            gameResult.gameSettings.minPercentOfRightAnswers
+        )
 
         binding.tvScorePercentage.text = String.format(
             getString(R.string.score_percentage),
@@ -80,8 +83,8 @@ class GameFinishedFragment: Fragment() {
     }
 
     private fun getPercentOfRightAnswers(): Int {
-        return if (gameResult.countOfQuestions==0)
-                0
+        return if (gameResult.countOfQuestions == 0)
+            0
         else (gameResult.countOfRightAnswers / gameResult.countOfQuestions.toDouble() * 100).toInt()
     }
 
@@ -97,7 +100,10 @@ class GameFinishedFragment: Fragment() {
     }
 
     private fun retryGame() {
-        requireActivity().supportFragmentManager.popBackStack(GameFragment.NAME, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        requireActivity().supportFragmentManager.popBackStack(
+            GameFragment.NAME,
+            FragmentManager.POP_BACK_STACK_INCLUSIVE
+        )
     }
 
     companion object {
